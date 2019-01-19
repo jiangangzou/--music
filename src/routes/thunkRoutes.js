@@ -18,6 +18,65 @@ const SubjectRoute = ({ match }) => {
         <Switch>
             <Route path={`${match.path}/:id`} exact component={MoviePage} />
             <Route path={`${match.path}/:id/reviews`} component={ReviewPage} />
-            <Route path={`${match.path}/:id/reviews?start=:start`}
+            <Route path={`${match.path}/:id/reviews?start=:start`} component={ReviewPage} />
+            <Route path={`${match.path}/:comments`} component={CommentPage} />
+            <Route path={`${match.path}/:id/comments?start=:start`} component={CommentPage} />
+        </Switch>
     )
 }
+
+const CelebrityPage = ({ match }) => {
+    return (
+        <Switch>
+            <Route path={`${match.path}/:id`} exact component={CelebrityPage} />
+        </Switch>
+    )
+}
+
+const ChartRoute = ({ match}) => {
+    return (
+        <Switch>
+            <DocumentTitle title={'选电影'}>
+                <Route path={`${match.path}`} exact component={ChartPage} />
+            </DocumentTitle>
+        </Switch>
+    )
+}
+
+const CinemaPage = ({ page}) => {
+    return (
+        <Switch>
+            <DocumentTitle title={'选电影'}>
+                <Route path={`${match.path}`} exact component={CinemaPage} />
+            </DocumentTitle>
+        </Switch>
+    )
+}
+
+const SearchRoute = ({ match, location }) => {
+    console.log('Search route')
+    return (
+      <SearchPage query={location.search.substring(3)} />
+    )
+  }
+
+const TagRoute = ({ match, location }) => {
+    console.log('Tag route')
+    return (
+      <DocumentTitle title={'选影视'}>
+        <TagPage query={location.search.substring(3)} />
+      </DocumentTitle>
+    )
+  }
+
+const NotFoundRoute = ({ match, location }) => {
+    console.log('Tag route')
+    return (
+      <DocumentTitle title={'页面, 不存在的'}>
+        <NotFoundPage />
+      </DocumentTitle>
+    )
+  }
+
+  export { NavBar, CelebrityRoute, ChartRoute, CinemaRoute, SearchRoute, TagRoute, SubjectRoute, NotFoundRoute, Footer }
+  
